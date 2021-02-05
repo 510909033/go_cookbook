@@ -1,0 +1,479 @@
+basePath: /v2
+definitions:
+  demo._ResponsePostList:
+    properties:
+      code:
+        description: 业务响应状态码
+        type: integer
+      data:
+        description: 数据
+        items:
+          $ref: '#/definitions/demo.DemoDetail'
+        type: array
+      message:
+        description: 提示信息
+        type: string
+    type: object
+  demo.DemoDetail:
+    properties:
+      id:
+        description: 用户id
+        type: integer
+      username:
+        description: 用户名
+        type: string
+    type: object
+  userinfo1.MenuResponse:
+    properties:
+      createdTs:
+        description: 使用时间戳秒数填充创建时间
+        type: integer
+      id:
+        type: integer
+      updatedAt:
+        description: 在创建时该字段值为零值或者在更新时，使用当前时间戳秒数填充
+        type: integer
+      updatedMilliTs:
+        description: 使用时间戳毫秒数填充更新时间
+        type: integer
+      updatedNanoTs:
+        description: 使用时间戳填纳秒数充更新时间
+        type: integer
+    type: object
+host: petstore.swagger.io
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server Petstore server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /accounts:
+    get:
+      consumes:
+      - application/json
+      description: get accounts
+      parameters:
+      - description: name search by q
+        in: query
+        name: q
+        type: string
+      produces:
+      - application/json
+      summary: List accounts
+  /cook/xiangha/init_table:
+    get:
+      consumes:
+      - application/json
+      description: 初始化香哈相关表
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            type: string
+        "400":
+          description: 非200都表示失败
+          schema:
+            type: string
+      summary: 初始化相关表
+      tags:
+      - Cook/Xiangha
+  /cook/xiangha/update_sitemap:
+    get:
+      consumes:
+      - application/json
+      description: 更新sitemap表数据
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            type: string
+        "400":
+          description: 非200都表示失败
+          schema:
+            type: string
+      summary: 更新sitemap表数据
+      tags:
+      - Cook/Xiangha
+  /examples/attribute:
+    get:
+      consumes:
+      - application/json
+      description: attribute
+      parameters:
+      - description: 使用时间戳秒数填充创建时间
+        in: query
+        name: createdTs
+        type: integer
+      - in: query
+        name: id
+        type: integer
+      - description: 在创建时该字段值为零值或者在更新时，使用当前时间戳秒数填充
+        in: query
+        name: updatedAt
+        type: integer
+      - description: 使用时间戳毫秒数填充更新时间
+        in: query
+        name: updatedMilliTs
+        type: integer
+      - description: 使用时间戳填纳秒数充更新时间
+        in: query
+        name: updatedNanoTs
+        type: integer
+      - description: string enums
+        in: query
+        name: menu_obj
+        type: object
+      - description: string enums
+        enum:
+        - A
+        - B
+        - C
+        in: query
+        name: enumstring
+        type: string
+      - description: int enums
+        enum:
+        - 1
+        - 2
+        - 3
+        in: query
+        name: enumint
+        type: integer
+      - description: int enums
+        enum:
+        - 1.1
+        - 1.2
+        - 1.3
+        in: query
+        name: enumnumber
+        type: number
+      - description: string valid
+        in: query
+        maxLength: 10
+        minLength: 5
+        name: string
+        type: string
+      - description: int valid
+        in: query
+        maximum: 10
+        minimum: 1
+        name: int
+        type: integer
+      - default: A
+        description: string default
+        in: query
+        name: default
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+        "501":
+          description: ok
+          schema:
+            $ref: '#/definitions/userinfo1.MenuResponse'
+        "502":
+          description: ok
+          schema:
+            type: string
+      summary: attribute example
+      tags:
+      - example
+  /examples/calc:
+    get:
+      consumes:
+      - application/json
+      description: plus
+      parameters:
+      - description: used for calc
+        in: query
+        name: val1
+        required: true
+        type: integer
+      - description: used for calc
+        in: query
+        name: val2
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: integer
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      summary: calc example
+      tags:
+      - example
+  /examples/groups/{group_id}/accounts/{account_id}:
+    get:
+      consumes:
+      - application/json
+      description: path params
+      parameters:
+      - description: Group ID
+        in: path
+        name: group_id
+        required: true
+        type: integer
+      - description: Account ID
+        in: path
+        name: account_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      summary: path params example
+      tags:
+      - example
+  /examples/header:
+    get:
+      consumes:
+      - application/json
+      description: custome header
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      summary: custome header example
+      tags:
+      - example
+  /examples/ping:
+    get:
+      consumes:
+      - application/json
+      description: do ping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: pong
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - example
+  /examples/post:
+    post:
+      consumes:
+      - application/json
+      description: post request example
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "500":
+          description: fail
+          schema:
+            type: string
+      summary: post request example
+  /examples/securities:
+    get:
+      consumes:
+      - application/json
+      description: custome header
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      - OAuth2Implicit:
+        - admin
+        - write
+      summary: custome header example
+      tags:
+      - example
+  /menu/add_menu:
+    get:
+      consumes:
+      - application/json
+      description: 通过这个api，可以添加一个全新的菜单
+      parameters:
+      - description: 使用时间戳秒数填充创建时间
+        in: query
+        name: createdTs
+        type: integer
+      - in: query
+        name: id
+        type: integer
+      - description: 在创建时该字段值为零值或者在更新时，使用当前时间戳秒数填充
+        in: query
+        name: updatedAt
+        type: integer
+      - description: 使用时间戳毫秒数填充更新时间
+        in: query
+        name: updatedMilliTs
+        type: integer
+      - description: 使用时间戳填纳秒数充更新时间
+        in: query
+        name: updatedNanoTs
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+      summary: 添加一个新菜单
+      tags:
+      - Menu
+  /posts2:
+    get:
+      consumes:
+      - application/json
+      description: 可按社区按时间或分数排序查询帖子列表接口
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 可以为空
+        in: query
+        name: community_id
+        type: integer
+      - description: 排序依据
+        example: score
+        in: query
+        name: order
+        type: string
+      - description: 页码
+        example: 1
+        in: query
+        name: page
+        type: integer
+      - description: 每页数据量
+        example: 10
+        in: query
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/demo._ResponsePostList'
+      security:
+      - ApiKeyAuth: []
+      summary: 升级版帖子列表接口
+      tags:
+      - 帖子相关接口
+swagger: "2.0"
